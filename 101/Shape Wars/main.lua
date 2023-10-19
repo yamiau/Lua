@@ -10,8 +10,11 @@ BUTTON_HEIGHT = 50
 
 font = nil
 currentMode = 0
-settings = {{}, true}
+sound = true
+buttonColor = {{0.3, 0.4, 0.5, 1}, {0.9, 0.9, 0.9, 0.7}}
+palette = {{1, 0, 0, 1}, {0, 1, 0, 1}, {0, 0, 1, 1}}
 
+click = love.audio.newSource("click.wav", "static")
 spaces = {}
 
 subscreens = {false, false}
@@ -26,6 +29,7 @@ function newButton(text, fn)
 end
 
 function love:load()
+  
   
   font = love.graphics.newFont(32)
   menu_main:load()
@@ -52,4 +56,10 @@ function love:draw()
   end
   
   --Board:draw()
+end
+
+function clickSound()
+  if sound then
+        love.audio.play(click)
+  end
 end

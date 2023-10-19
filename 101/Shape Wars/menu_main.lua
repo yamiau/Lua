@@ -7,7 +7,8 @@ function menu_main:load()
   table.insert(buttons, 
     newButton(
       "Start",
-      function() 
+      function()
+        clickSound()
         currentMode = 1 
       end
     )
@@ -16,7 +17,8 @@ function menu_main:load()
   table.insert(buttons, 
     newButton(
       "Settings",
-      function() 
+      function()
+        clickSound()
         currentMode = 2
       end
     )
@@ -25,7 +27,8 @@ function menu_main:load()
   table.insert(buttons, 
     newButton(
       "Exit",
-      function() 
+      function()
+        clickSound()
         love.event.quit() 
       end
     )
@@ -51,14 +54,14 @@ function menu_main:draw()
     
     local bx = (ww * 0.5) - (button_width * 0.5)
     local by = (wh * 0.5) - (total_height * 0.5) + cursor_y
-    local bc = {0.3, 0.4, 0.5, 1}
+    local bc = buttonColor[1]
     
     local mx, my = love.mouse.getPosition()
     local hot = mx >= bx and mx < bx + button_width and 
                 my >= by and my < by + BUTTON_HEIGHT
     
     if hot then
-      bc = {0.9, 0.9, 0.9, 0.7}
+      bc = buttonColor[2]
     end
     
     button.now = love.mouse.isDown(1)
