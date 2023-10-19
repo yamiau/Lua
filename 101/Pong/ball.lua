@@ -17,9 +17,10 @@ function Ball:load()
   --[[self.timer = 0
   self.rate = 0.22--
   self.distortRate = 0.7]]
-  
-    
+      
   self.bounce = love.audio.newSource("bounce.wav", "static")
+  
+  --self.sprite = love.graphics.newImage("face.png")
 end
 
 function Ball:update(dt)
@@ -30,6 +31,7 @@ end
 
 function Ball:draw()
   love.graphics.rectangle("fill", self.x, self.y, self.width, self.height)
+  --love.graphics.draw(self.sprite, self.x, self.y)
   
   --[[if self.timer > self.rate then
     self.width = 20

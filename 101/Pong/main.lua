@@ -22,9 +22,7 @@ function love.update(dt)
     
   if love.keyboard.isDown("escape") then
     Menu.gameOn = false
-    Ball:load()
-    Player:load()
-    Opponent:load()
+    love.load()
   end
 end
 
