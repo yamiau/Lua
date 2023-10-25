@@ -17,21 +17,28 @@ function Ball:load()
   --[[self.timer = 0
   self.rate = 0.22--
   self.distortRate = 0.7]]
-      
-  self.bounce = love.audio.newSource("bounce.wav", "static")
   
-  --self.sprite = love.graphics.newImage("face.png")
+  self.sprite = love.graphics.newImage("face.png")
+  self.bounce = Nil 
 end
 
 function Ball:update(dt)
   self:move(dt)
   self:collide(dt)
+  if moeMode then
+    self.bounce = love.audio.newSource("bounce.mp3", "static")
+  else
+    self.bounce = love.audio.newSource("bounce.wav", "static")
+  end
 end
 
 
 function Ball:draw()
-  love.graphics.rectangle("fill", self.x, self.y, self.width, self.height)
-  --love.graphics.draw(self.sprite, self.x, self.y)
+  if moeMode then
+    love.graphics.draw(self.sprite, self.x, self.y)
+  else
+    love.graphics.rectangle("fill", self.x, self.y, self.width, self.height)
+  end
   
   --[[if self.timer > self.rate then
     self.width = 20

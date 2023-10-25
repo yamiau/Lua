@@ -3,7 +3,6 @@ require("opponent")
 Menu = {}
 
 function Menu:load()
-  self.gameOn = false
   self.difficulty = 5
   
   self.width = love.graphics.getWidth() /2
@@ -13,6 +12,9 @@ function Menu:load()
   
   font = love.graphics.newFont("AldotheApache.ttf", 100)
   love.graphics.setFont(font, 1)
+  
+  self.moeOn = love.audio.newSource("moeOn.wav", "static")
+  self.moeOff = love.audio.newSource("moeOff.wav", "static")
 end
 
 function Menu:update(dt)
@@ -35,10 +37,19 @@ function Menu:getInput()
     end
   end
   
+  if love.keyboard.isDown("m") then
+    moeMode = not moeMode
+    if moeMode then
+      self.moeOn:play()
+    else
+      self.moeOff:play()
+    end      
+  end
+  
   if love.keyboard.isDown("return") then
     Opponent.difficulty = self.difficulty
     Opponent.rate = Opponent.rate / self.difficulty
-    self.gameOn = true
+    gameOn = true
   end  
 end
 

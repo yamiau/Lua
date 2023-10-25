@@ -3,15 +3,18 @@ require("ball")
 require("player")
 require("opponent")
 
+gameOn = false
+moeMode = false
+
 function love.load()
-  Menu:load()
-  Ball:load()
-  Player:load()
-  Opponent:load()
+    Menu:load()
+    Ball:load()
+    Player:load()
+    Opponent:load()
 end
 
 function love.update(dt)
-  if not Menu.gameOn then
+  if not gameOn then
     Menu:update(dt)
   else
     Ball:update(dt)
@@ -21,13 +24,13 @@ function love.update(dt)
   
     
   if love.keyboard.isDown("escape") then
-    Menu.gameOn = false
+    gameOn = false
     love.load()
   end
 end
 
 function love.draw()
-  if Menu.gameOn then
+  if gameOn then
     Player:draw()
     Ball:draw()
     Opponent:draw()
